@@ -31,6 +31,7 @@
 
 			$(".pw-slide").each(function() {
 				$(this).addClass("offset-"+$(this).offset().top);
+				$(this).attr("offset", $(this).offset().top);
 
 				if($offset != 0)
 				{
@@ -39,7 +40,7 @@
 					if($offset != $newOffset)
 					{
 						$(this).prev().addClass("pw-slide-group-last");
-						$(this).addClass("pw-slide-group-first").before("<div class='pw-previewer pw-preview-" + $offset + " hide'>HERE</div>");
+						$(this).addClass("pw-slide-group-first").before("<div class='pw-previewer pw-preview-" + $offset + " hide' offset='"+ $offset +"'></div>");
 	
 						$offset = $newOffset;
 					}
@@ -50,7 +51,7 @@
 				}
 			});
 
-			$el.append("<div class='pw-previewer pw-preview-" + $offset + " hide'>HERE</div>");
+			$el.append("<div class='pw-previewer pw-preview-" + $offset + " hide' offset='"+ $offset +"'></div>");
  			
  			$el.children(".pw-slide:first").addClass("pw-slide-group-first");
 			$el.children(".pw-slide:last").addClass("pw-slide-group-last");
@@ -62,31 +63,46 @@
 		$(".pw-slide").click(function() {
 			$pwCurrentSlide = $(this);
 						
-			$(".pw-previewer").addClass("hide").stop().slideUp(options.speed);
+			//$(".pw-previewer").addClass("hide").stop().slideUp(options.speed);
 			$previewer = $pwCurrentSlide.nextAll(".pw-previewer:first");
 			$pwCurrentPreviewer = $previewer;
 
+			$slideOffset = $pwCurrentSlide.attr('offset');
+			$oldPreview = $(".curPreview");
+			$previewOffset = null;
+			if($oldPreview.length > 0) {
+				$previewOffset = $oldPreview.attr('offset');
+			}
+			
+			if($slideOffset != $previewOffset) {
+				$(".pw-previewer").addClass("hide").removeClass("curPreview").stop().slideUp(options.speed);
+			}
+			
 			$previewer.empty();
 			$previewer.append("<span class='pw-previewer-close'>x</span>");
 			$(".pw-previewer-close").click(function() {
+				$(".pw-previewer").addClass("hide").removeClass("curPreview").stop().slideUp(options.speed);
+				//$pwCurrentPreviewer.empty();
 				$pwCurrentSlide = 0;
-				$pwCurrentPreviewer.empty();
 				$pwCurrentPreviewer = 0;
-
-				$(".pw-previewer").addClass("hide").stop().slideUp(options.speed);
 			});
 
 			$(this).children("img").clone().appendTo($previewer);
-			$(this).children(".pw-image-desc").contents().clone().appendTo($previewer);
-			$previewer.children("h1, p").wrapAll("<div />");
+			$previewer.children(".pw-image").wrapAll("<div class='pw-image-container' />");
+			$(this).children(".pw-image-desc").clone().appendTo($previewer);
 
-			$previewer.slideDown(options.speed, function() {
-				$('html,body').animate({
-					scrollTop: $previewer.children("img").offset().top - 100
-				}, options.speed);
-			}).removeClass("hide");		
-		});
 			
+			$previewer.slideDown(options.speed, function() {
+				if($('body').scrollTop() != ($previewer.offset().top - options.topOffset)
+				   && ($(document).height() - $(window).height() - $('body').scrollTop()) > $('.pw-image:first').height()
+				   ) {
+					$('html,body').animate({
+						scrollTop: $previewer.offset().top - options.topOffset
+					}, options.speed);
+				}
+			}).removeClass("hide").addClass("curPreview");		
+		});
+		
 		//set-up keyboard events
 		$(document).keydown(function(e){
 			switch(e.which) 
@@ -206,7 +222,7 @@
 		}
 	
 		$('html,body').animate({
-			scrollTop: $pwCurrentPreviewer.children("img").offset().top - 100
+			scrollTop: $pwCurrentPreviewer.children("img").offset().top - options.topOffset
 		}, options.speed);
 		
 		hook('afterNext');
@@ -254,7 +270,7 @@
 		}
 	
 		$('html,body').animate({
-			scrollTop: $pwCurrentPreviewer.children("img").offset().top - 100
+			scrollTop: $pwCurrentPreviewer.offset().top - options.topOffset
 		}, options.speed);
 	
 		hook('afterPrev');
@@ -360,17 +376,18 @@
   // passing an object literal, or after initialization:
   // $('.photoWall').photoWall('option', 'key', value);
   $.fn[pluginName].defaults = {
-  	speed: 500,
-    beforeInit: function() {},
+    speed: 500,
+    topOffset: 30,
+    beforeInit: function() {},
     afterInit: function() {},    
-    beforeNextPrev: function() {},
-    afterNextPrev: function() {},    
-    beforeNext: function() {},
-    afterNext: function() {}, 
-	beforePrev: function() {},
-	afterPrev: function() {},	
-	beforeClose: function() {},
-	afterClose: function() {},
+    beforeNextPrev: function() {},
+    afterNextPrev: function() {},    
+    beforeNext: function() {},
+    afterNext: function() {}, 
+    beforePrev: function() {},
+    afterPrev: function() {},	
+    beforeClose: function() {},
+    afterClose: function() {},
     onDestroy: function() {}
   };
  
