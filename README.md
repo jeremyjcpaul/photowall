@@ -2,7 +2,12 @@
 
 *A lightweight Google-esque jQuery plugin for displaying photos*
 
-**Current version: 0.1.0** - [(Demo)](http://jeremyjcpaul.com/photo-wall-demo.php)
+**Current version: 1.0.0** - [(Demo)](http://jeremyjcpaul.com/photo-wall-demo.php)
+
+##Changes
+
+Version 1.0.0 - First major version - Complete restructure of the code; more efficient initialisations, no need for the user to use specific class names, ability to have multiple PhotoWalls on a page and now fully responsive.
+Version 0.1.0 - Creation point.
 
 ##Basic Usage
 
@@ -21,13 +26,13 @@
 <script src="photowall/jquery.photoWall.min.js"></script>
 ```
 	
-2. Add the photo wall HTML code to the body section. Please use the recommended setup below; using the same tag types with the same class attributes. Otherwise the plugin will break, without any manual code adjustments.
+2. Add the photo wall HTML code to the body section. Please use the recommended setup below; using the same tag types. Otherwise the plugin will break, without any manual code adjustments.
 
 ```html
 <div class="photowall">
-    <div class="pw-slide">
-        <img class="pw-image" src="images/image-filename.jpg" />
-        <div class="pw-image-desc">
+    <div>
+        <img src="images/image-filename.jpg" />
+        <div>
             <!-- Any HTML content can go in here. -->
             <!-- Be inventive. Be cool. -->
         </div>
@@ -269,9 +274,9 @@ If you have a large selection of photos in your wall you may want to link to one
 Set the image slide an ID of "test" for reference later:
 
 ```html
-<div id="test" class="pw-slide">
-    <img class="pw-image" src="images/test.jpg" />
-    <div class="pw-image-desc">
+<div id="test">
+    <img src="images/test.jpg" />
+    <div>
         <h1>Testing selectById</h1>
         <p>
             The ID of the pw-slide has been set to test. 
