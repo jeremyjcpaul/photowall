@@ -6,6 +6,7 @@
 
 ##Changes
 
+Version 2.0.0 - Complete rewrite of the entire code to get inline with best practice and to fix a few bugs.
 Version 1.0.0 - First major version - Complete restructure of the code; more efficient initialisations, no need for the user to use specific class names, ability to have multiple PhotoWalls on a page and now fully responsive.
 Version 0.1.0 - Creation point.
 
@@ -19,7 +20,7 @@ Version 0.1.0 - Creation point.
 
 <!-- Plugin requires jQuery 1.9+  -->
 <!-- Ensure jQuery appears only once on your page for performance. -->
-<script src="photowall/jquery-1.9.1.min.js"></script>
+<script src="photowall/jquery-1.11.3.min.js"></script>
 
 <!-- Main PhotoWall JS script file -->
 <!-- Use the minified version for better performance. -->
@@ -236,13 +237,13 @@ Gets (returns the type of the respective option) or sets the photo wall options.
 Get the value of the speed option:
 
 ```js
-$(".photowall").photoWall("option", "speed");
+$(".photowall").photoWall().option("speed");
 ```
 				
 Set the value of the speed option:
 
 ```js
-$(".photowall").photoWall("option", "speed", 800);
+$(".photowall").photoWall().option("speed", 800);
 ```
 				
 ###select(value)
@@ -254,14 +255,14 @@ Displays the image display for the photo index given, as if the user had clicked
 Select the second image for display:
 
 ```js
-$(".photowall").photoWall("select", 1);
+$(".photowall").photoWall().select(1);
 ```
 				
 Select the second image for display after initializing the photo wall:
 
 ```js
 $(".photowall").photoWall({
-    afterInit: function() { $(this).photoWall("select", 1); }
+    afterInit: function() { $(".photowall").photoWall().select(1); }
 });
 ```
 				
@@ -289,31 +290,31 @@ Set the image slide an ID of "test" for reference later:
 Select the image slide with ID "test" for display:
 
 ```js
-$(".photowall").photoWall("selectById", "test");
+$(".photowall").photoWall().selectById("test");
 ```
 				
 ###selectFirst()
 
-Displays the image display for the first photo, as if the user had clicked on that image. The equivalent of $(".photowall").photoWall("select", 0);.
+Displays the image display for the first photo, as if the user had clicked on that image. The equivalent of $(".photowall").photoWall().select(0);.
 
 ####Code examples:
 
 Select the first image for display:
 
 ```js
-$(".photowall").photoWall("selectFirst");
+$(".photowall").photoWall().selectFirst();
 ```
 				
 ###selectLast()
 
-Displays the image display for the last photo, as if the user had clicked on that image. The equivalent of $(".photowall").photoWall("select", $(this).children(":last").index());.
+Displays the image display for the last photo, as if the user had clicked on that image. The equivalent of $(".photowall").photoWall().select($(this).children(":last").index());.
 
 ####Code examples:
 
 Select the first image for display:
 
 ```js
-$(".photowall").photoWall("selectLast");
+$(".photowall").photoWall().selectLast();
 ```
 				
 ###close()
@@ -325,7 +326,7 @@ Closes the image display. Is also attached to the ESC button press event.
 Close the image display:
 
 ```js
-$(".photowall").photoWall("close");
+$(".photowall").photoWall().close();
 ```
 
 ###next()
@@ -337,7 +338,7 @@ Bring the next image into the image display. Is also attached to the left arrow 
 Bring the next image into the image display:
 
 ```js
-$(".photowall").photoWall("next");
+$(".photowall").photoWall().next();
 ```
 				
 ###prev()
@@ -349,7 +350,7 @@ Bring the previous image into the image display. Is also attached to the right a
 Bring the previous image into the image display:
 
 ```js
-$(".photowall").photoWall("prev");
+$(".photowall").photoWall().prev();
 ```
 				
 ###destroy()
@@ -361,5 +362,5 @@ Destroy the photo wall instance.
 Destroy the photo wall instance:
 
 ```js
-$(".photowall").photoWall("destroy");
+$(".photowall").photoWall().destroy();
 ```

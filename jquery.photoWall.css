@@ -1,13 +1,13 @@
 /*!
- * jQuery photoWall.js v1.0.0
+ * jQuery photoWall.js v2.0.0
  * http://jeremyjcpaul.com
  * https://github.com/jeremyjcpaul/photowall
  *
- * Copyright 2013 Jeremy JC Paul
+ * Copyright 2015 Jeremy JC Paul
  * Released under the MIT license.
  * https://github.com/jeremyjcpaul/photowall/blob/master/MIT-LICENSE.txt
  *
- * Date: 21/11/2013
+ * Date: 14/12/2015
  */
 .photowall { position:relative; width:100%; height:100%; margin:0 auto; max-width:1647px; }
 .pw-slide-group { clear:both; }
