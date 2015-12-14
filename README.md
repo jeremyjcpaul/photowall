@@ -2,13 +2,13 @@
 
 *A lightweight Google-esque jQuery plugin for displaying photos*
 
-**Current version: 1.0.0** - [(Demo)](http://jeremyjcpaul.com/photo-wall-demo.php)
+**Current version: 2.0.0** - [(Demo)](http://jeremyjcpaul.com/photo-wall-demo.php)
 
 ##Changes
 
-Version 2.0.0 - Complete rewrite of the entire code to get inline with best practice and to fix a few bugs.
-Version 1.0.0 - First major version - Complete restructure of the code; more efficient initialisations, no need for the user to use specific class names, ability to have multiple PhotoWalls on a page and now fully responsive.
-Version 0.1.0 - Creation point.
+- Version 2.0.0 - Complete rewrite of the entire code to get inline with best practice and to fix a few bugs.
+- Version 1.0.0 - First major version - Complete restructure of the code; more efficient initialisations, no need for the user to use specific class names, ability to have multiple PhotoWalls on a page and now fully responsive.
+- Version 0.1.0 - Creation point.
 
 ##Basic Usage
 
