@@ -11,7 +11,7 @@
     "author": {
         "name": "Jeremy JC Paul",
         "email": "jeremy@jeremyjcpaul.com",
-        "url": "https://jeremyjcpaul.com"
+        "url": "http://jeremyjcpaul.com"
     },
     "licenses": [
         {
@@ -20,8 +20,8 @@
         }
     ],
     "bugs": "https://github.com/jeremyjcpaul/photowall/issues",
-    "homepage": "http://jeremyjcpaul.com/photo-wall.php",
-    "docs": "http://jeremyjcpaul.com/photo-wall.php",
+    "homepage": "http://jeremyjcpaul.com/photo-wall",
+    "docs": "http://jeremyjcpaul.com/photo-wall",
     "download": "https://github.com/jeremyjcpaul/photowall",
     "dependencies": {
         "jquery": ">=1.9.0"
