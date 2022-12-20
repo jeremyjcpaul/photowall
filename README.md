@@ -2,7 +2,9 @@
 
 *A lightweight Google-esque jQuery plugin for displaying photos*
 
-**No longer maintained by the author, since Dec 2015 **
+```diff
+- No longer maintained by the author, since Dec 2015
+```
 
 **Current version: 2.0.0**
 
